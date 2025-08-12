@@ -1,0 +1,2 @@
+sqlmesh[snowflake]
+sqlmesh[github]

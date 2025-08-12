@@ -1,0 +1,11 @@
+# Ignore Python virtual environment
+.venv/
+
+# Ignore Snowflake environment file (contains sensitive credentials)
+.snowflake.env
+
+# Ignore logs directory
+logs/
+
+# Ignore cache directory
+.cache/

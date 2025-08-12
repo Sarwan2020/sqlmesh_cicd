@@ -1,0 +1,38 @@
+# --- Gateway Connection ---
+gateways:
+  snowflake:
+    connection:
+      # For more information on configuring the connection to your execution engine, visit:
+      # https://sqlmesh.readthedocs.io/en/stable/reference/configuration/#connection
+      # https://sqlmesh.readthedocs.io/en/stable/integrations/engines/snowflake/#connection-options
+      type: snowflake
+      account: {{ env_var('SNOWFLAKE_ACCOUNT') }}
+      concurrent_tasks: 4
+      register_comments: True
+      pre_ping: False
+      pretty_sql: False
+      user: {{ env_var('SNOWFLAKE_USER') }}
+      password: {{ env_var('SNOWFLAKE_PASSWORD') }}
+      warehouse: COMPUTE_WH
+      database: sqlmesh_demo
+      role: ACCOUNTADMIN
+
+default_gateway: snowflake
+
+# --- Model Defaults ---
+# https://sqlmesh.readthedocs.io/en/stable/reference/model_configuration/#model-defaults
+
+model_defaults:
+  dialect: snowflake
+  start: 2025-08-11 # Start date for backfill history
+  cron: '@daily'    # Run models daily at 12am UTC (can override per model)
+
+# --- Linting Rules ---
+# Enforce standards for your team
+# https://sqlmesh.readthedocs.io/en/stable/guides/linter/
+
+linter:
+  enabled: true
+  rules:
+    - ambiguousorinvalidcolumn
+    - invalidselectstarexpansion
