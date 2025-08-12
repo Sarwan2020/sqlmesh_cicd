@@ -12,6 +12,7 @@ SELECT
   id,
   item_id,
   event_date,
+  11
 FROM
   sqlmesh_example.seed_model
 WHERE
